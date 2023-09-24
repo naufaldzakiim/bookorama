@@ -15,5 +15,9 @@
 <body>
   <?php
   $dirname = dirname(__FILE__);
-  include($dirname . '/navbar.php') ?>
+  if (basename($dirname) == 'books' || basename($dirname) == 'customers' || basename($dirname) == 'orders' || basename($dirname) == 'recap') {
+    $dirname = dirname($dirname);
+    include($dirname . '/navbar.php');
+  }
+  ?>
   <div class="container">
