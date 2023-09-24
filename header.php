@@ -15,8 +15,7 @@
 <body>
   <?php
   $dirname = dirname(__FILE__);
-  if (basename($dirname) == 'books' || basename($dirname) == 'customers' || basename($dirname) == 'orders' || basename($dirname) == 'recap') {
-    $dirname = dirname($dirname);
+  if (isset($_SESSION['username'])) {
     include($dirname . '/navbar.php');
   }
   ?>
