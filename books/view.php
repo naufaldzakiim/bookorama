@@ -16,10 +16,10 @@ if (isset($_GET['submit'])) {
   $query = "SELECT b.isbn as isbn, b.author as author, b.title as title, c.name as category, b.price as price
             FROM books b, categories c
             WHERE b.categoryid = c.categoryid AND
-            (b.isbn LIKE '%$search%' OR
-            b.author LIKE '%$search%' OR
-            b.title LIKE '%$search%' OR
-            c.name LIKE '%$search%' OR
+            (UPPER(b.isbn) LIKE '%$search%' OR
+            UPPER(b.author) LIKE '%$search%' OR
+            UPPER(b.title) LIKE '%$search%' OR
+            UPPER(c.name) LIKE '%$search%' OR
             b.price LIKE '%$search%')";
 } else {
   $query = "SELECT b.isbn as isbn, b.author as author, b.title as title, c.name as category, b.price as price
@@ -60,7 +60,7 @@ if (!$result) {
         echo '<tr>';
         echo '<td>' . $row->isbn . '</td>';
         echo '<td>' . $row->author . '</td>';
-        echo '<td><a href="book.php?id='.$row->isbn.'">' . $row->title . '</a></td>';
+        echo '<td><a href="book.php?id=' . $row->isbn . '">' . $row->title . '</a></td>';
         echo '<td>' . $row->category . '</td>';
         echo '<td>$' . $row->price . '</td>';
         echo '<td><a class="btn btn-warning btn-sm" href="edit.php?id=' . $row->isbn . '">Edit</a>' . '&nbsp;&nbsp;';
