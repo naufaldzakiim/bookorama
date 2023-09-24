@@ -13,5 +13,7 @@
 </head>
 
 <body>
-  <?php include('../navbar.php') ?>
+  <?php
+  $dirname = dirname(__FILE__);
+  include($dirname . '/navbar.php') ?>
   <div class="container">
