@@ -14,7 +14,7 @@
       <?php
       require_once('./lib/db_login.php');
 
-      $query = "SELECT * FROM books";
+      $query = "SELECT b.isbn as isbn, b.author as author, b.title as title, c.name as category, b.price as price FROM books b LEFT JOIN categories c on b.categoryid = c.categoryid";
       $result = $db->query($query);
       if (!$result) {
         die("Could not query the database: <br />" . $db->error . '<br>Query: ' . $query);
@@ -24,11 +24,12 @@
       while ($row = $result->fetch_object()) {
         echo '<tr>';
         echo '<td>' . $row->isbn . '</td>';
-        echo '<td>' . $row->author . '</td>';
         echo '<td>' . $row->title . '</td>';
-        echo '<td>' . $row->categoryid . '</td>';
+        echo '<td>' . $row->category . '</td>';
+        echo '<td>' . $row->author . '</td>';
         echo '<td>$' . $row->price . '</td>';
-        echo '<td><a class="btn btn-primary btn-sm" href="show_cart.php?id=' . $row->isbn . '">Add to Cart</a></td>';
+        echo '<td><a class="btn btn-warning btn-sm" href="edit_book.php?id=' . $row->isbn . '">Edit</a>&nbsp;&nbsp;';
+        echo '<a class="btn btn-danger btn-sm" href="delete_book.php?id=' . $row->isbn . '">Delete</a></td>';
         echo '</tr>';
         $i++;
       }
