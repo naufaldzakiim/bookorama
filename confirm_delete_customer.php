@@ -37,7 +37,7 @@ if (!$result) {
     </div>
     <div>
       <a class="btn btn-danger mb-4" href=<?php echo 'delete_customer.php?id=' . $id ?>>Yes</a>
-      <a class="btn btn-primary mb-4" href="view_customer.php">Back</a>
+      <a class="btn btn-primary mb-4" href="view_customers.php">Back</a>
     </div>
   </div>
 </div>

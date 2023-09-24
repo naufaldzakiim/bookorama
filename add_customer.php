@@ -40,7 +40,7 @@ if (isset($_POST["submit"])) {
       die("Could not query the database: <br />" . $db->error . '<br>Query: ' . $query);
     } else {
       $db->close();
-      header('Location: view_customer.php');
+      header('Location: view_customers.php');
     }
   }
 }
@@ -74,7 +74,7 @@ if (isset($_POST["submit"])) {
       </div>
       <br>
       <button type="submit" class="btn btn-primary" name="submit" value="submit">Submit</button>
-      <a href="view_customer.php" class="btn btn-secondary">Cancel</a>
+      <a href="view_customers.php" class="btn btn-secondary">Cancel</a>
     </form>
   </div>
 </div>

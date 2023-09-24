@@ -14,8 +14,6 @@ include('./header.php');
   <div class="card-body">
     <p>Welcome...</p>
     <p>You are logged in as <b><?= $_SESSION['username']; ?></b></p>
-    <br><br>
-    <a class="btn btn-primary" href="logout.php">Logout</a>
   </div>
 </div>
 <?php include('./footer.php') ?>

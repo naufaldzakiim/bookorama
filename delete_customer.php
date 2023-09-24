@@ -15,6 +15,6 @@ $query = "DELETE FROM customers WHERE customerid = '" . $id . "'";
     die("Could not query the database: <br />" . $db->error);
   } else {
     $db->close();
-    header('Location: view_customer.php');
+    header('Location: view_customers.php');
   }
 ?>
