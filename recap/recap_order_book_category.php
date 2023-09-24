@@ -1,7 +1,7 @@
 <?php
 require_once('../lib/db_login.php');
 // Simulasi pengambilan data dari PHP
-$query_order_by_category = "SELECT count(b.isbn) as total, b.categoryid, c.name as category_name
+$query_order_by_category = "SELECT sum(oi.quantity) as total, b.categoryid, c.name as category_name
                             from categories c
                             left join
                             books b
