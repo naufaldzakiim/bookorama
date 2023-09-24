@@ -7,10 +7,10 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" href="view_books.php">Books</a>
+          <a class="nav-link" href="books/view.php">Books</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="view_customers.php">Customers</a>
+          <a class="nav-link" href="customers/view.php">Customers</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Orders</a>
