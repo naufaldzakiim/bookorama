@@ -6,7 +6,7 @@ if(!isset($_SESSION['username'])){
     exit;
 }
 
-include('./lib/db_login.php');
+include('../lib/db_login.php');
 
 if (isset($_POST["submit"])) {
   $valid = TRUE;
@@ -46,7 +46,7 @@ if (isset($_POST["submit"])) {
 }
 ?>
 
-<?php include('./header.php') ?>
+<?php include('../header.php') ?>
 <br>
 <div class="card mt-4">
   <div class="card-header">Add Book Data</div>
