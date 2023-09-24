@@ -31,11 +31,11 @@ if (!$result) {
     <form action="" method="GET" class="mb-3 d-flex justify-content-between">
       <div class="d-flex">
         <label for="start_date">Start Date:</label>
-        <input type="date" name="start_date" id="start_date">
+        <input class="form-control" type="date" name="start_date" id="start_date">
         <label for="end_date">End Date:</label>
-        <input type="date" name="end_date" id="end_date">
+        <input class="form-control" type="date" name="end_date" id="end_date">
       </div>
-      <button class="btn btn-outline-primary" type="submit" value="submit">Filter</button>
+      <button class="btn btn-outline-primary" name="submit" type="submit" value="submit">Filter</button>
     </form>
     <br>
     <table class="table table-striped">
