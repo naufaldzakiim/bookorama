@@ -1,7 +1,4 @@
 <?php
-
-use function PHPSTORM_META\type;
-
 session_start();
 
 if (!isset($_SESSION['username'])) {
@@ -27,21 +24,13 @@ if (!isset($_SESSION['username'])) {
       </tr>
       <?php
       require_once('../lib/db_login.php');
-      $query = "SELECT
-      c.categoryid,
-      c.name AS 'category_name',
-      JSON_ARRAYAGG(
-          JSON_OBJECT('isbn', b.isbn, 'title', b.title, 'author', b.author, 'price', b.price)
-      ) AS 'books'
-  FROM
-      books b
-  LEFT JOIN
-      categories c
-  ON
-      b.categoryid = c.categoryid
-  GROUP BY
-      c.categoryid, c.name;
-  ";
+      $query = "SELECT c.categoryid, c.name AS 'category_name',
+                JSON_ARRAYAGG(
+                  JSON_OBJECT('isbn', b.isbn, 'title', b.title, 'author', b.author, 'price', b.price)
+                ) AS 'books'
+              FROM books b LEFT JOIN categories c
+              ON b.categoryid = c.categoryid
+              GROUP BY c.categoryid, c.name;";
 
       $result = $db->query($query);
       if (!$result) {
@@ -50,14 +39,9 @@ if (!isset($_SESSION['username'])) {
 
       $currentCategory = "";
       while ($row = $result->fetch_object()) {
-        // if ($currentCategory != $row->category) {
-        //   // Start a new row for the category header.
-        //   if ($currentCategory != "") {
-        //     echo '</tr>';
-        //   }
         echo '<tr>';
         $books = json_decode($row->books);
-        echo '<th rowspan="' . count($books) .  '"><strong>' . $row->category_name . '</strong></td>';
+        echo '<th rowspan="' . count($books) . '">' . $row->category_name . '</td>';
 
         foreach ($books as $book) {
           if ($book != $books[0]) {
