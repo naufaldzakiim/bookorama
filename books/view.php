@@ -1,4 +1,4 @@
-<?php include('./header.php') ?>
+<?php include('../header.php') ?>
 <div class="card mt-3">
   <div class="card-header">Books Data</div>
   <div class="card-body">
@@ -12,7 +12,7 @@
         <th>Action</th>
       </tr>
       <?php
-      require_once('./lib/db_login.php');
+      require_once('../lib/db_login.php');
 
       $query = "SELECT b.isbn as isbn, b.author as author, b.title as title, c.name as category, b.price as price
                 FROM books b, categories c
