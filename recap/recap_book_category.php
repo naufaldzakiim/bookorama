@@ -19,19 +19,6 @@ while ($row = $result_total_by_category->fetch_object()) {
     $data_category[] = $row->category_name;
     $data_total_by_category[] = $row->total;
 }
-
-// $query_category = "SELECT c.name as category_name, c.categoryid
-//                   from categories c
-//                   order by c.categoryid asc";
-
-// $result_category = $db->query($query_category);
-// if (!$result_category) {
-//     die("Could not query the database: <br />" . $db->error . '<br>Query: ' . $query_category);
-// }
-// $data_category = [];
-// while ($row = $result_category->fetch_object()) {
-//     $data_category[] = $row->category_name;
-// }
 ?>
 
 <div class="card mt-3">
