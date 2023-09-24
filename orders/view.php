@@ -5,12 +5,38 @@ if (!isset($_SESSION['username'])) {
   header('Location: login.php');
   exit;
 }
+
+require_once('../lib/db_login.php');
+
+if (isset($_GET['submit'])) {
+  $start_date = $_GET['start_date'];
+  $end_date = $_GET['end_date'];
+  $query = "SELECT o.orderid, c.name,o.amount, o.date  FROM orders o left join customers c ON o.customerid = c.customerid WHERE o.date BETWEEN '$start_date' AND '$end_date' ORDER BY o.orderid";
+} else {
+  $query = "SELECT o.orderid, c.name,o.amount, o.date  FROM orders o left join customers c ON o.customerid = c.customerid ORDER BY o.orderid";
+}
+
+// $query = "SELECT o.orderid, c.name,o.amount, o.date  FROM orders o left join customers c ON o.customerid = c.customerid ORDER BY o.orderid";
+$result = $db->query($query);
+if (!$result) {
+  die("Could not query the database: <br />" . $db->error . '<br>Query: ' . $query);
+}
+
 ?>
 
 <?php include('../header.php') ?>
 <div class="card mt-3">
   <div class="card-header">Order Data</div>
   <div class="card-body">
+    <form action="" method="GET" class="mb-3 d-flex justify-content-between">
+      <div class="d-flex">
+        <label for="start_date">Start Date:</label>
+        <input type="date" name="start_date" id="start_date">
+        <label for="end_date">End Date:</label>
+        <input type="date" name="end_date" id="end_date">
+      </div>
+      <button class="btn btn-outline-primary" type="submit" value="submit">Filter</button>
+    </form>
     <br>
     <table class="table table-striped">
       <tr>
@@ -21,14 +47,6 @@ if (!isset($_SESSION['username'])) {
         <th>Action</th>
       </tr>
       <?php
-      require_once('../lib/db_login.php');
-
-      $query = "SELECT o.orderid, c.name,o.amount, o.date  FROM orders o left join customers c ON o.customerid = c.customerid ORDER BY o.orderid";
-      $result = $db->query($query);
-      if (!$result) {
-        die("Could not query the database: <br />" . $db->error . '<br>Query: ' . $query);
-      }
-
       $i = 1;
       while ($row = $result->fetch_object()) {
         echo '<tr>';

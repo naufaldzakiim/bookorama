@@ -38,7 +38,7 @@ $result = $db->query($query);
     <div class="mb-3 d-flex justify-content-between">
       <a href="add.php" class="btn btn-primary">+ Add New Book</a>
       <form action="" class="d-flex" method="GET">
-        <input id="search" class="form-control me-2" type="text" placeholder="Search book">
+        <input id="search" class="form-control me-2" type="text" name="search" placeholder="Search book">
         <button class="btn btn-outline-primary" type="submit" value="submit">Search</button>
       </form>
     </div>
@@ -57,7 +57,7 @@ $result = $db->query($query);
         echo '<tr>';
         echo '<td>' . $row->isbn . '</td>';
         echo '<td>' . $row->author . '</td>';
-        echo '<td>' . $row->title . '</td>';
+        echo '<td><a href="book.php?id='.$row->isbn.'">' . $row->title . '</a></td>';
         echo '<td>' . $row->category . '</td>';
         echo '<td>$' . $row->price . '</td>';
         echo '<td><a class="btn btn-warning btn-sm" href="edit.php?id=' . $row->isbn . '">Edit</a>' . '&nbsp;&nbsp;';
