@@ -68,7 +68,7 @@ if ($id != '') {
       ?>
     </table>
     Total items = <?php echo $sum_qty ?><br><br>
-    <a class="btn btn-primary" href="view_books.php">Continue Shopping</a>
+    <a class="btn btn-primary" href="view.php">Continue Shopping</a>
     <a class="btn btn-danger" href="delete_cart.php">Empty Cart</a>
   </div>
 </div>

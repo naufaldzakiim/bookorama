@@ -1,5 +1,5 @@
 <?php include('./header.php') ?>
-<?php include('./navbar.php') ?>
+<!-- <?php include('./navbar.php') ?> -->
 <div class="card mt-5">
   <div class="card-header">Books Data</div>
   <div class="card-body">
