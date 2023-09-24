@@ -29,7 +29,7 @@ if (isset($_POST['submit'])) {
         } else {
             if ($result->num_rows > 0) {
                 $_SESSION['username'] = $email;
-                header('Location: admin.php');
+                header('Location: view_customer.php');
                 exit;
             } else {
                 echo '<span class="error">Combination of username and password are not correct.</span>';
