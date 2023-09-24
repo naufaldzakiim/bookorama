@@ -1,4 +1,7 @@
-<?php 
+<?php
+
+use function PHPSTORM_META\type;
+
 session_start();
 
 if (!isset($_SESSION['username'])) {
@@ -23,11 +26,23 @@ if (!isset($_SESSION['username'])) {
         <th>Author</th>
         <th>Price</th>
       </tr>
-      <?php 
+      <?php
       require_once('../lib/db_login.php');
-      $query = "SELECT b.isbn as isbn, b.author as author, b.title as title, c.name as category, b.price as price
-                FROM books b, categories c
-                WHERE b.categoryid = c.categoryid";
+      $query = "SELECT
+      c.categoryid,
+      c.name AS 'category_name',
+      JSON_ARRAYAGG(
+          JSON_OBJECT('isbn', b.isbn, 'title', b.title, 'author', b.author, 'price', b.price)
+      ) AS 'books'
+  FROM
+      books b
+  LEFT JOIN
+      categories c
+  ON
+      b.categoryid = c.categoryid
+  GROUP BY
+      c.categoryid, c.name;
+  ";
 
       $result = $db->query($query);
       if (!$result) {
@@ -36,24 +51,25 @@ if (!isset($_SESSION['username'])) {
 
       $currentCategory = "";
       while ($row = $result->fetch_object()) {
-        if ($currentCategory != $row->category) {
-          // Start a new row for the category header.
-          if ($currentCategory != "") {
-            echo '</tr>';
-          }
-          echo '<tr>';
-          echo '<td colspan="5"><strong>' . $row->category . '</strong></td>';
-          echo '</tr>';
-          $currentCategory = $row->category;
-        }
-
+        // if ($currentCategory != $row->category) {
+        //   // Start a new row for the category header.
+        //   if ($currentCategory != "") {
+        //     echo '</tr>';
+        //   }
         echo '<tr>';
-        echo '<td></td>'; // Empty cell for category header row.
-        echo '<td>' . $row->isbn . '</td>';
-        echo '<td>' . $row->title . '</td>';
-        echo '<td>' . $row->author . '</td>';
-        echo '<td>$' . $row->price . '</td>';
-        echo '</tr>';
+        $books = json_decode($row->books);
+        echo '<th rowspan="' . count($books) .  '"><strong>' . $row->category_name . '</strong></td>';
+
+        foreach ($books as $book) {
+          if ($book != $books[0]) {
+            echo '<tr>';
+          }
+          echo '<td>' . $book->isbn . '</td>';
+          echo '<td>' . $book->title . '</td>';
+          echo '<td>' . $book->author . '</td>';
+          echo '<td>$' . $book->price . '</td>';
+          echo '</tr>';
+        }
       }
       echo '</table>';
       echo '<br />';
