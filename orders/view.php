@@ -9,9 +9,8 @@ if (!isset($_SESSION['username'])) {
 
 <?php include('../header.php') ?>
 <div class="card mt-3">
-  <div class="card-header">Customers Data</div>
+  <div class="card-header">Order Data</div>
   <div class="card-body">
-    <a href="add_customer.php" class="btn btn-primary mb-4">+ Add Customer Data</a>
     <br>
     <table class="table table-striped">
       <tr>
@@ -51,4 +50,4 @@ if (!isset($_SESSION['username'])) {
       ?>
   </div>
 </div>
-<?php include('./footer.php') ?>
+<?php include('../footer.php') ?>
