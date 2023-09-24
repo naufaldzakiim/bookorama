@@ -39,6 +39,7 @@ while ($row = $result_order_by_category->fetch_object()) {
     const orderChart = document.getElementById('booksOrderChart');
 
     const dataOrder = <?php echo json_encode($data_order_by_category); ?>;
+    category = <?php echo json_encode($data_category); ?>;
 
     const chartOrder = new Chart(orderChart, {
         type: 'bar',

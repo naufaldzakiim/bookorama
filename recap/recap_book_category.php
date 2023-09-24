@@ -37,7 +37,7 @@ while ($row = $result_total_by_category->fetch_object()) {
 
     const dataTotal = <?php echo json_encode($data_total_by_category); ?>;
 
-    const category = <?php echo json_encode($data_category); ?>;
+    let category = <?php echo json_encode($data_category); ?>;
     const chartTotal = new Chart(totalChart, {
         type: 'bar',
         data: {
