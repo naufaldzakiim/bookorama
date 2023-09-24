@@ -10,7 +10,13 @@ if (!isset($_SESSION['username'])) {
 <?php include("../header.php") ?>
 <div class="card mt-3">
   <div class="card-header">Recap on Chart</div>
+  <div class="card-body">
+    <div>
+      <canvas id="booksTotalChart"></canvas>
+    </div>
+  </div>
 </div>
+
 <div class="card mt-3">
   <div class="card-header">Recap on Table</div>
   <div class="card-body">
@@ -63,4 +69,41 @@ if (!isset($_SESSION['username'])) {
       ?>
   </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const ctx = document.getElementById('booksTotalChart');
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  const config = {
+    type: 'bar',
+    data: data,
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    },
+  };
+</script>
 <?php include("../footer.php") ?>
