@@ -2,6 +2,8 @@
 <div class="card mt-3">
   <div class="card-header">Books Data</div>
   <div class="card-body">
+    <a href="add.php" class="btn btn-primary">+ Add New Book</a>
+    <br>
     <table class="table table-striped">
       <tr>
         <th>ISBN</th>
@@ -31,8 +33,8 @@
         echo '<td>' . $row->category . '</td>';
         echo '<td>$' . $row->price . '</td>';
         echo '<td><a class="btn btn-primary btn-sm" href="show_cart.php?id=' . $row->isbn . '">Add to Cart</a>' . '&nbsp;&nbsp;';
-        echo '<a class="btn btn-warning btn-sm" href="edit_book.php?id=' . $row->isbn . '">Edit</a>' . '&nbsp;&nbsp;';
-        echo '<a class="btn btn-danger btn-sm" href="confirm_delete_book.php?id=' . $row->isbn . '">Delete</a></td>' . '&nbsp;&nbsp;';
+        echo '<a class="btn btn-warning btn-sm" href="edit.php?id=' . $row->isbn . '">Edit</a>' . '&nbsp;&nbsp;';
+        echo '<a class="btn btn-danger btn-sm" href="confirm_delete.php?id=' . $row->isbn . '">Delete</a></td>' . '&nbsp;&nbsp;';
         echo '</tr>';
         $i++;
       }
@@ -45,4 +47,4 @@
       ?>
   </div>
 </div>
-<?php include('./footer.php') ?>
+<?php include('../footer.php') ?>

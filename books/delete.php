@@ -5,7 +5,7 @@ if (!isset($_SESSION['username'])) {
   header('Location: login.php');
   exit;
 }
-require_once('./lib/db_login.php');
+require_once('../lib/db_login.php');
 
 $id = $_GET['id'];
 
@@ -15,6 +15,6 @@ $query = "DELETE FROM books WHERE isbn = '" . $id . "'";
     die("Could not query the database: <br />" . $db->error);
   } else {
     $db->close();
-    header('Location: view_books.php');
+    header('Location: view.php');
   }
 ?>

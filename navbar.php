@@ -1,3 +1,7 @@
+<?php
+  $dirname = dirname(__FILE__);
+?>
+
 <nav class="navbar navbar-expand-lg sticky-top bg-white">
   <div class="container">
     <a class="navbar-brand" href="#">Bookorama</a>

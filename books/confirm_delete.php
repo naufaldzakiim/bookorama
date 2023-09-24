@@ -5,7 +5,7 @@ if (!isset($_SESSION['username'])) {
   header('Location: login.php');
   exit;
 }
-require_once('./lib/db_login.php');
+require_once('../lib/db_login.php');
 
 $id = $_GET['id'];
 
@@ -27,9 +27,9 @@ if (!$result) {
 }
 ?>
 
-<?php include('./header.php') ?>
+<?php include('../header.php') ?>
 <br>
-<div class="card mt-4">
+<div class="card mt-3">
   <div class="card-header">Delete User Confirmation</div>
   <div class="card-body">
     <div>
@@ -41,12 +41,12 @@ if (!$result) {
       <label>Price: <?= $price; ?></label><br>
     </div>
     <div>
-      <a class="btn btn-danger mb-4" href=<?php echo 'delete_book.php?id=' . $id ?>>Yes</a>
-      <a class="btn btn-primary mb-4" href="view_books.php">Back</a>
+      <a class="btn btn-danger mb-4" href=<?php echo 'delete.php?id=' . $id ?>>Yes</a>
+      <a class="btn btn-primary mb-4" href="view.php">Back</a>
     </div>
   </div>
 </div>
-<?php include('./footer.php') ?>
+<?php include('../footer.php') ?>
 <?php
 $db->close();
 ?>
