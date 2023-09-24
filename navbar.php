@@ -1,3 +1,11 @@
+<?php
+$dirname = dirname(__FILE__);
+$qa_path = $dirname;
+$qa_path = explode("\\", $qa_path);
+$qa_path = $qa_path[count($qa_path) - 1];
+$base_url = "http://localhost/" . $qa_path;
+
+?>
 <nav class="navbar navbar-expand-lg sticky-top bg-white">
   <div class="container">
     <a class="navbar-brand" href="#">Bookorama</a>
@@ -7,7 +15,7 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" href="books/view.php">Books</a>
+          <a class="nav-link" href="<?php echo $base_url . '/books/view.php' ?>">Books</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="customers/view.php">Customers</a>

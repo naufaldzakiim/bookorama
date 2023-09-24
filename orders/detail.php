@@ -16,15 +16,15 @@ if (!isset($_SESSION['username'])) {
     <table class="table table-striped">
       <tr>
         <th>No</th>
-        <th>Nama Customer</th>
-        <th>Jumlah Order</th>
-        <th>Tanggal</th>
+        <th>ISBN</th>
+        <th>Nama Buku</th>
+        <th>Jumlah Buku</th>
         <th>Action</th>
       </tr>
       <?php
       require_once('../lib/db_login.php');
 
-      $query = "SELECT o.orderid, c.name,o.amount, o.date  FROM orders o left join customers c ON o.customerid = c.customerid ORDER BY o.orderid";
+      $query = "SELECT oi.orderid, b.isbn,b.title, oi.quantity  FROM order_items oi left join books b ON oi.isbn = b.isbn ORDER BY oi.orderid";
       $result = $db->query($query);
       if (!$result) {
         die("Could not query the database: <br />" . $db->error . '<br>Query: ' . $query);
@@ -34,10 +34,10 @@ if (!isset($_SESSION['username'])) {
       while ($row = $result->fetch_object()) {
         echo '<tr>';
         echo '<td>' . $i . '</td>';
-        echo '<td>' . $row->name . '</td>';
-        echo '<td>' . $row->amount . '</td>';
-        echo '<td>' . $row->date . '</td>';
-        echo '<td><a class="btn btn-primary btn-sm" href="detail.php?id=' . $row->orderid . '">View</a>&nbsp;&nbsp;';
+        echo '<td>' . $row->isbn . '</td>';
+        echo '<td>' . $row->title . '</td>';
+        echo '<td>' . $row->quantity . '</td>';
+        // echo '<td><a class="btn btn-primary btn-sm" href="detail.php?id=' . $row->orderid . '">View</a>&nbsp;&nbsp;';
         echo '</tr>';
         $i++;
       }
