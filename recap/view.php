@@ -5,9 +5,48 @@ if (!isset($_SESSION['username'])) {
   header('Location: login.php');
   exit;
 }
+require_once('../lib/db_login.php');
+// Simulasi pengambilan data dari PHP
+$query_total_by_category = "SELECT count(b.isbn) as total, b.categoryid
+            from books b
+            group by b.categoryid
+            order by b.categoryid
+            ";
+
+$result_total_by_category = $db->query($query_total_by_category);
+if (!$result_total_by_category) {
+  die("Could not query the database: <br />" . $db->error . '<br>Query: ' . $query_total_by_category);
+}
+$data_total_by_category = [];
+while ($row = $result_total_by_category->fetch_object()) {
+  $data_total_by_category[] = $row->total;
+}
+
+$query_category = "SELECT c.name as category_name, c.categoryid
+            from categories c
+            order by c.categoryid
+            ";
+
+$result_category = $db->query($query_category);
+if (!$result_category) {
+  die("Could not query the database: <br />" . $db->error . '<br>Query: ' . $query_category);
+}
+$data_category = [];
+while ($row = $result_category->fetch_object()) {
+  $data_category[] = $row->category_name;
+}
 ?>
 
 <?php include("../header.php") ?>
+<div class="card mt-3">
+  <div class="card-header">Recap on Chart</div>
+  <div class="card-body">
+    <div>
+      <canvas id="booksTotalChart"></canvas>
+    </div>
+  </div>
+</div>
+
 <div class="card mt-3">
   <div class="card-header">Recap on Chart</div>
   <div class="card-body">
@@ -29,7 +68,7 @@ if (!isset($_SESSION['username'])) {
         <th>Price</th>
       </tr>
       <?php
-      require_once('../lib/db_login.php');
+
       $query = "SELECT c.categoryid, c.name AS 'category_name',
                 JSON_ARRAYAGG(
                   JSON_OBJECT('isbn', b.isbn, 'title', b.title, 'author', b.author, 'price', b.price)
@@ -75,13 +114,16 @@ if (!isset($_SESSION['username'])) {
 <script>
   const ctx = document.getElementById('booksTotalChart');
 
+  const dataFromPHP = <?php echo json_encode($data_total_by_category); ?>;
+
+  const category = <?php echo json_encode($data_category); ?>;
   new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      labels: category,
       datasets: [{
-        label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
+        label: 'Jumlah Buku Berdasarkan Kategori',
+        data: dataFromPHP,
         borderWidth: 1
       }]
     },
