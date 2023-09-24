@@ -10,6 +10,9 @@ require_once('../lib/db_login.php');
 
 if (isset($_GET['submit'])) {
   $search = $_GET['search'];
+  if (gettype($search) == 'string') {
+    $search = strtoupper($search);
+  }
   $query = "SELECT b.isbn as isbn, b.author as author, b.title as title, c.name as category, b.price as price
             FROM books b, categories c
             WHERE b.categoryid = c.categoryid AND
@@ -25,9 +28,9 @@ if (isset($_GET['submit'])) {
 }
 
 $result = $db->query($query);
-  if (!$result) {
-    die("Could not query the database: <br />" . $db->error . '<br>Query: ' . $query);
-  }
+if (!$result) {
+  die("Could not query the database: <br />" . $db->error . '<br>Query: ' . $query);
+}
 
 ?>
 
@@ -38,8 +41,8 @@ $result = $db->query($query);
     <div class="mb-3 d-flex justify-content-between">
       <a href="add.php" class="btn btn-primary">+ Add New Book</a>
       <form action="" class="d-flex" method="GET">
-        <input id="search" class="form-control me-2" type="text" name="search" placeholder="Search book">
-        <button class="btn btn-outline-primary" type="submit" value="submit">Search</button>
+        <input id="search" class="form-control me-2" name="search" type="text" placeholder="Search book">
+        <button class="btn btn-outline-primary" name="submit" type="submit" value="submit">Search</button>
       </form>
     </div>
     <table class="table table-striped">
