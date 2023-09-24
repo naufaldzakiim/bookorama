@@ -18,13 +18,13 @@ $base_url = "http://localhost/" . $qa_path;
           <a class="nav-link" href="<?php echo $base_url . '/books/view.php' ?>">Books</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="customers/view.php">Customers</a>
+          <a class="nav-link" href="<?php echo $base_url . '/customers/view.php' ?>">Customers</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Orders</a>
+          <a class="nav-link" href="<?php echo $base_url . '/orders/view.php' ?>">Orders</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Recap</a>
+          <a class="nav-link" href="<?php echo $base_url . '/recap/view.php' ?>">Recap</a>
         </li>
       </ul>
       <a class="btn btn-sm btn-danger" href="logout.php">Logout</a>

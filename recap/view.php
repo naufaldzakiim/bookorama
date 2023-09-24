@@ -11,7 +11,6 @@ if (!isset($_SESSION['username'])) {
 ?>
 
 <?php include("../header.php") ?>
-<br>
 <div class="card mt-3">
   <div class="card-header">Recap on Chart</div>
 </div>

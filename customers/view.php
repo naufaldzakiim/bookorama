@@ -11,8 +11,7 @@ if (!isset($_SESSION['username'])) {
 <div class="card mt-3">
   <div class="card-header">Customers Data</div>
   <div class="card-body">
-    <a href="add.php" class="btn btn-primary">+ Add New Customer</a>
-    <br>
+    <a href="add.php" class="btn btn-primary mb-3">+ Add New Customer</a>
     <table class="table table-striped">
       <tr>
         <th>No</th>
