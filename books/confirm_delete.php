@@ -9,9 +9,9 @@ require_once('../lib/db_login.php');
 
 $id = $_GET['id'];
 
-$query = 'SELECT b.isbn as isbn, b.author as author, b.title as title, c.name as category, b.price as price
+$query = "SELECT b.isbn as isbn, b.author as author, b.title as title, c.name as category, b.price as price
                 FROM books b, categories c
-                WHERE b.categoryid = c.categoryid';
+                WHERE b.categoryid = c.categoryid AND b.isbn ='" . $id ."'";
 $result = $db->query($query);
 
 if (!$result) {
