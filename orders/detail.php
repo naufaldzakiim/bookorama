@@ -5,6 +5,7 @@ if (!isset($_SESSION['username'])) {
   header('Location: login.php');
   exit;
 }
+$id = $_GET['id'];
 ?>
 
 <?php include('../header.php') ?>
@@ -24,7 +25,7 @@ if (!isset($_SESSION['username'])) {
       <?php
       require_once('../lib/db_login.php');
 
-      $query = "SELECT oi.orderid, b.isbn,b.title, oi.quantity,b.price, (b.price * oi.quantity) as sub_total  FROM order_items oi left join books b ON oi.isbn = b.isbn ORDER BY oi.orderid";
+      $query = "SELECT oi.orderid, b.isbn,b.title, oi.quantity,b.price, (b.price * oi.quantity) as sub_total  FROM order_items oi left join books b ON oi.isbn = b.isbn WHERE oi.orderid = $id ORDER BY oi.orderid ";
       $result = $db->query($query);
       if (!$result) {
         die("Could not query the database: <br />" . $db->error . '<br>Query: ' . $query);
