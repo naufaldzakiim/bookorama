@@ -18,6 +18,17 @@ $result = $db->query($query);
 if (!$result) {
   die("Could not query the database: <br />" . $db->error . '<br>Query: ' . $query);
 }
+
+if (isset($_POST['submit'])) {
+  $review = $_POST['review'];
+  $query = "INSERT INTO book_reviews (isbn, review) VALUES ('$id', '$review')";
+  $result = $db->query($query);
+  if (!$result) {
+    die("Could not query the database: <br />" . $db->error . '<br>Query: ' . $query);
+  }
+  header('Location: book.php?id=' . $id);
+  exit;
+}
 ?>
 
 <?php include('../header.php') ?>
