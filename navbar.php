@@ -27,7 +27,7 @@ $base_url = "http://localhost/" . $qa_path;
           <a class="nav-link" href="<?php echo $base_url . '/recap/view.php' ?>">Recap</a>
         </li>
       </ul>
-      <a class="btn btn-sm btn-danger" href="logout.php">Logout</a>
+      <a class="btn btn-sm btn-danger" href="<?php echo $base_url . '/logout.php' ?>">Logout</a>
     </div>
   </div>
 </nav>
