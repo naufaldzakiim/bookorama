@@ -16,7 +16,6 @@ if (isset($_GET['submit'])) {
   $query = "SELECT o.orderid, c.name,o.amount, o.date  FROM orders o left join customers c ON o.customerid = c.customerid ORDER BY o.orderid";
 }
 
-// $query = "SELECT o.orderid, c.name,o.amount, o.date  FROM orders o left join customers c ON o.customerid = c.customerid ORDER BY o.orderid";
 $result = $db->query($query);
 if (!$result) {
   die("Could not query the database: <br />" . $db->error . '<br>Query: ' . $query);
@@ -28,16 +27,17 @@ if (!$result) {
 <div class="card mt-3">
   <div class="card-header">Order Data</div>
   <div class="card-body">
-    <form action="" method="GET" class="mb-3 d-flex justify-content-between">
-      <div class="d-flex">
+    <form action="" method="GET" class="mb-3">
+      <div class="d-flex flex-column">
         <label for="start_date">Start Date:</label>
         <input class="form-control" type="date" name="start_date" id="start_date">
+        <br>
         <label for="end_date">End Date:</label>
         <input class="form-control" type="date" name="end_date" id="end_date">
+        <br>
       </div>
       <button class="btn btn-outline-primary" name="submit" type="submit" value="submit">Filter</button>
     </form>
-    <br>
     <table class="table table-striped">
       <tr>
         <th>No</th>
