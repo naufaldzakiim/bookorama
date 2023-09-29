@@ -63,6 +63,7 @@ if (!$result) {
       <?php
       $i = 1;
       while ($row = $result->fetch_object()) {
+        echo '<form action="">';
         echo '<tr>';
         echo '<td>' . $row->isbn . '</td>';
         echo '<td>' . $row->author . '</td>';
@@ -73,6 +74,7 @@ if (!$result) {
         echo '<a class="btn btn-warning btn-sm" href="edit.php?id=' . $row->isbn . '">Edit</a>' . '&nbsp;&nbsp;';
         echo '<a class="btn btn-danger btn-sm" href="confirm_delete.php?id=' . $row->isbn . '">Delete</a></td>';
         echo '</tr>';
+        echo '</form>';
         $i++;
       }
       echo '</table>';
